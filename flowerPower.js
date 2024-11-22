@@ -4,19 +4,48 @@ function setup() {
 }
   
 function draw() {
-    flowerPower();
+    //flowerPower();
+    bouquet();
 }
 
 function flowerPower(){
     if(mouseIsPressed){
-        let size = random(20,100)
-        fill(random(0,255), random(0,255), random(0,255));
-        circle(mouseX-10, mouseY-10, size);
-        circle(mouseX-10, mouseY+10, size);
-        circle(mouseX+10, mouseY-10, size);
-        circle(mouseX+10, mouseY+10, size);
-        fill(random(200,255), random(50,255), random(50,255));
-        circle(mouseX, mouseY, size);
+        let flower = new Flower(random(20,100), random(10,90), mouseX, mouseY);
+        flower.drawFlow();
     }
-    
+}
+
+function bouquet(){
+    if(mouseIsPressed){
+        for(let i = 1; i < 10; i++){
+            let randX, randY;
+            randX = mouseX + random(-20,20)*i;
+            randY = mouseY +random(-20,20)*i;
+
+            let flower = new Flower(random(20,100), random(10,90), randX, randY);
+            flower.drawFlow();
+        }
+    }
+
+}
+
+class Flower {
+    constructor(petalSize, coreSize, x, y){
+        this.petalSize = petalSize;
+        this.coreSize = coreSize;
+        this.x = x;
+        this.y = y;
+    }
+
+    drawFlow(){
+        fill(random(0,255), random(0,255), random(0,255));
+        circle(this.x-10, this.y-10, this.petalSize);
+        circle(this.x-10, this.y+10, this.petalSize);
+        circle(this.x+10, this.y-10, this.petalSize);
+        circle(this.x+10, this.y+10, this.petalSize);
+        fill(random(200,255), random(50,255), random(50,255));
+        circle(this.x, this.y, this.coreSize);
+    }
+
+
 }
