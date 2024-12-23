@@ -5,7 +5,6 @@ function setup() {
   
 function draw() {
     //flowerPower();
-    bouquet();
 }
 
 function flowerPower(){
@@ -28,6 +27,20 @@ function bouquet(){
     }
 
 }
+
+function gameOfLife(){
+    //let layer;
+    //layer = createGraphics(200, 200);
+    let percent = random(0,100);
+    if(percent > 10){
+      let flower = new Flower(random(20,100), random(10,90), randX, randY);
+      flower.drawFlow();
+    }
+  }
+  
+  function mouseClicked(){
+    gameOfLife();
+  }
 
 class Flower {
     constructor(petalSize, coreSize, x, y){
